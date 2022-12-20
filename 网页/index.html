@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="JS/echarts.js"></script>
+    <script src="JS/vintage.js"></script>
+  </head>
+  <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 800px;height:600px;"></div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'),'vintage');
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: [
+    {
+      text: '各种服饰词在唐诗中出现的频率',
+      top:10,
+      left:'center'
+    }
+  ],
+  polar: {
+    radius: [20, '80%']
+  },
+  angleAxis: {
+    max: 650,startAngle: 90
+  },
+  radiusAxis: {
+    type: 'category',
+    data: ['裙','衫', '袍', '履','簪','襟']
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  series: {
+    legendMode:'single',
+    selectedOffset:20,
+    clockwise:true,
+    coordinateSystem: 'polar',
+    legendHoverLink: true,  
+    type: 'bar',
+    data: [
+    {value: 208,name: '裙'},
+    {value: 230,name: '衫'},  
+    {value: 289,name: '袍'},  
+    {value: 434,name: '履'},  
+    {value: 480,name: '簪'},  
+    {value: 630,name: '襟'}   
+   ],
+   enphasis:{
+    itemStyle:{
+        shadowBlur:10,
+        shadowOffsetx:0,
+        shadowColor:'rgba(0,0,0,0.5)'
+    }
+   },
+
+    colorBy: "data",
+    label: {
+      show: true,
+      color:'white',
+      fontWeight:'blod',
+      position: 'middle',
+      formatter: '{b}: {c}次'
+    }
+  }
+};
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
